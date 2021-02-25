@@ -10,7 +10,7 @@ const StyledDivider = styled.div`
   ${({ direction }: any) =>
     direction === "vertical" &&
     `
-    width: 2px;
+    width: 5px;
     touch-action: pan-y;
     background-color: rgb(118, 185, 0, 0.5);
   `}
@@ -18,7 +18,7 @@ const StyledDivider = styled.div`
   ${({ direction }: any) =>
     direction === "horizontal" &&
     `
-    height: 2px;
+    height: 5px;
     width: 100%;
     touch-action: pan-x;
     background-color: #ff5b009e;
@@ -67,15 +67,23 @@ export const Divider = ({
     setCanMove({ canMove: false, direction });
   };
 
+  const eventGroups = [
+    [handleMoveDivider, "mousemove", "touchmove"],
+    [handleDividerMouseDown, "mousedown", "touchstart"],
+    [handleDividerMouseUp, "mouseup", "touchend"],
+  ];
+
   React.useEffect(() => {
-    document.addEventListener("mousemove", handleMoveDivider);
-    document.addEventListener("mousedown", handleDividerMouseDown);
-    document.addEventListener("mouseup", handleDividerMouseUp);
+    eventGroups.forEach((eventGroup: any) => {
+      const [fn, ...eventNames] = eventGroup;
+      eventNames.forEach((e: string) => document.addEventListener(e, fn));
+    });
 
     return () => {
-      document.removeEventListener("mousemove", handleMoveDivider);
-      document.removeEventListener("mousedown", handleDividerMouseDown);
-      document.removeEventListener("mouseup", handleDividerMouseUp);
+      eventGroups.forEach((eventGroup: any) => {
+        const [fn, ...eventNames] = eventGroup;
+        eventNames.forEach((e: string) => document.removeEventListener(e, fn));
+      });
     };
     // eslint-disable-next-line
   }, []);
