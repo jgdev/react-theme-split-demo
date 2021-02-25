@@ -1,33 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import styled from "styled-components";
 import App from "./components/App";
 import Divider from "./components/Divider";
-import AceEditor from "react-ace";
 
 import reportWebVitals from "./reportWebVitals";
 
-const Code = styled((props: any) => <div {...props} />)`
-  position: absolute;
-  background: black;
-  width: 100%;
-  z-index: 3;
-  bottom: 0;
-`;
+// const Code = styled((props: any) => <div {...props} />)`
+//   position: absolute;
+//   background: black;
+//   width: 100%;
+//   z-index: 3;
+//   bottom: 0;
+// `;
 
 const Container = () => {
   const initialVertialOffset =
     window.innerWidth / 2 + (window.innerWidth >= 900 ? 180 : 0);
-  const initialHorizontalOffset =
-    window.innerHeight / 2 + (window.innerHeight >= 900 ? 160 : 130);
+  // const initialHorizontalOffset =
+  //   window.innerHeight / 2 + (window.innerHeight >= 900 ? 160 : 130);
 
   const [verticalOffset, setVerticalOffset] = React.useState(
     initialVertialOffset
   );
-  const [horizontalOffset, setHorizontalOffset] = React.useState(
-    initialHorizontalOffset
-  );
+  // const [horizontalOffset, setHorizontalOffset] = React.useState(
+  //   initialHorizontalOffset
+  // );
 
   return (
     <>

@@ -52,7 +52,7 @@ const App = ({
             <img
               src={reactLogo}
               className="react-logo"
-              alt="React fancy image"
+              alt="React fancy logo"
             />
             <div className="content">
               <h1>React Theme Split Demo</h1>

@@ -77,7 +77,8 @@ export const Divider = ({
       document.removeEventListener("mousedown", handleDividerMouseDown);
       document.removeEventListener("mouseup", handleDividerMouseUp);
     };
-  }, [handleMoveDivider, handleDividerMouseDown, handleDividerMouseUp]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <StyledDivider
