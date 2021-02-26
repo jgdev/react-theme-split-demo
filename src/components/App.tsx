@@ -62,7 +62,12 @@ const App = ({
             <div className="content">
               <h1>React Theme Split Demo</h1>
               <h3>Just something I did for fun</h3>
-              <button>An awesome button</button>
+              <a
+                href="https://github.com/jgdev/react-theme-split-demo"
+                target="github:react-theme-split-demo"
+              >
+                <button>View source code</button>
+              </a>
             </div>
           </main>
         </section>
