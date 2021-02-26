@@ -8,12 +8,16 @@ export type AppProps = Partial<React.HTMLAttributes<HTMLDivElement>> & {
   theme: "light" | "dark";
   verticalOffset?: number;
   horizontalOffset?: number;
+  moveEffect?: any;
+  moveEffectDelay?: number;
 };
 
 const App = ({
   theme,
   verticalOffset = window.innerWidth,
   horizontalOffset = window.innerHeight,
+  moveEffect = false,
+  moveEffectDelay = 1000,
   ...props
 }: AppProps) => {
   const StyledContainer = theme === "light" ? LightTheme : DarkTheme;
@@ -21,6 +25,7 @@ const App = ({
     <StyledContainer
       {...props}
       style={{
+        animation: moveEffect && `${moveEffectDelay}ms initialAppAnimation`,
         clip: `
           rect(
             0px,

@@ -9,6 +9,15 @@ export default styled.div`
   right: 0;
   z-index: 1;
 
+  @keyframes initialAppAnimation {
+    0% {
+      clip: rect(0px, 0px, ${window.innerHeight}px, 0px);
+    }
+    100% {
+      clip: rect(0px, ${window.innerWidth / 2}px, ${window.innerHeight}px, 0px);
+    }
+  }
+
   header {
     padding: 0 1rem;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);

@@ -1,69 +1,33 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./components/App";
 import Divider from "./components/Divider";
-
 import reportWebVitals from "./reportWebVitals";
 
-// const Code = styled((props: any) => <div {...props} />)`
-//   position: absolute;
-//   background: black;
-//   width: 100%;
-//   z-index: 3;
-//   bottom: 0;
-// `;
+import "./index.css";
 
-const Container = () => {
-  const initialVertialOffset =
-    window.innerWidth / 2 + (window.innerWidth >= 900 ? 180 : 0);
-  // const initialHorizontalOffset =
-  //   window.innerHeight / 2 + (window.innerHeight >= 900 ? 160 : 130);
+const Container = React.memo(() => {
+  const initialOffset = {
+    vertical: window.innerWidth / 2,
+    horizontal: window.innerHeight / (window.innerHeight >= 900 ? 160 : 130),
+  };
 
-  const [verticalOffset, setVerticalOffset] = React.useState(
-    initialVertialOffset
-  );
-  // const [horizontalOffset, setHorizontalOffset] = React.useState(
-  //   initialHorizontalOffset
-  // );
+  const [offset, setOffset] = React.useState(initialOffset);
+  const setVerticalOffset = (value: number) =>
+    setOffset({ ...offset, vertical: value });
 
   return (
     <>
       <App theme="light" />
-      <App
-        theme="dark"
-        {...{
-          verticalOffset,
-          // horizontalOffset,
-        }}
-      />
+      <App theme="dark" verticalOffset={offset.vertical} moveEffect />
       <Divider
         onChangeOffset={setVerticalOffset}
-        initialOffset={initialVertialOffset}
+        initialOffset={offset.vertical}
+        moveEffect
       />
-      {/* <Code
-        style={{
-          top: `${horizontalOffset}px`,
-        }}
-      >
-        <AceEditor
-          mode="javascript"
-          theme="terminal"
-          name="code-editor"
-          editorProps={{ $blockScrolling: true }}
-          fontSize={18}
-          value={codeEditorContent()}
-        />
-      </Code> */}
-      {/* <Divider
-        onChangeOffset={setHorizontalOffset}
-        initialOffset={initialHorizontalOffset}
-        direction="horizontal"
-        style={{ zIndex: 4 }}
-      /> */}
     </>
   );
-};
+});
 
 ReactDOM.render(
   <React.StrictMode>
